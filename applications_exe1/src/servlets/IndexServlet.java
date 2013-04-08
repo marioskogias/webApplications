@@ -66,10 +66,16 @@ public class IndexServlet extends HttpServlet {
 			
 			output.println("Old user");
 			output.println("<fieldset><legend>Hello mr "+ cookieMap.get("name") +  "</legend></fieldset>");
-			output.println("<div class = 'hero-unit'>");
+			output.println("Your personal data are");
+			output.println("<table class='table table-striped'> <tbody>");
+			output.println("<tr><td><strong>Name</strong></td><td>"+cookieMap.get("name")+"</td></tr>");
+			output.println("<tr><td><strong>Surname</strong></td><td>"+cookieMap.get("surname")+"</td></tr>");
+			output.println("<tr><td><strong>Company</strong></td><td>"+cookieMap.get("company")+"</td></tr>");
 			
-			output.println("</div>");
-			output.println("<button style = 'margin-left : 45%' class='btn btn-large btn-primary' type='button'>Register</button>");
+			 
+			output.println("</tbody></table>");
+			
+			output.println("<a style = 'margin-left : 45%' class='btn btn-large btn-primary' type='button' href = 'form.html'>Make an order now</a>");
 		}
 			
 
