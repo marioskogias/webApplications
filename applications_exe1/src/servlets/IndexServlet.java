@@ -61,9 +61,9 @@ public class IndexServlet extends HttpServlet {
 			//create cookie dictionary
 			int i;
 			HashMap<String,String> cookieMap = new HashMap<String,String>(3);
-			for (i=0;i<cookies.length;i++) {
+			for (i=0;i<cookies.length;i++) 
 				cookieMap.put(cookies[i].getName(),cookies[i].getValue());
-			}
+			
 			output.println("Old user");
 			output.println("<fieldset><legend>Hello mr "+ cookieMap.get("name") +  "</legend></fieldset>");
 			output.println("<div class = 'hero-unit'>");
@@ -85,15 +85,15 @@ public class IndexServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		String val = request.getParameter("name"); 
-		Cookie c = new Cookie(val, "name"); // to be stored there as a cookie
+		Cookie c = new Cookie("name",val); // to be stored there as a cookie
 		c.setMaxAge(120); // seconds until cookie removed
 		response.addCookie(c); // must preceede getWriter
 		val = request.getParameter("surname"); 
-		c = new Cookie(val, "surnname"); // to be stored there as a cookie
+		c = new Cookie("surnname",val); // to be stored there as a cookie
 		c.setMaxAge(120); // seconds until cookie removed
 		response.addCookie(c); // must preceede getWriter
 		val = request.getParameter("company"); 
-		c = new Cookie(val, "company"); // to be stored there as a cookie
+		c = new Cookie("company",val); // to be stored there as a cookie
 		c.setMaxAge(120); // seconds until cookie removed
 		response.addCookie(c); // must preceede getWriter
 		
