@@ -29,4 +29,14 @@
     <servlet-name>firstServlet</servlet-name>
     <url-pattern>/firstServlet</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>second</display-name>
+    <servlet-name>second</servlet-name>
+    <servlet-class>servlets.second</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>second</servlet-name>
+    <url-pattern>/second</url-pattern>
+  </servlet-mapping>
 </web-app>
