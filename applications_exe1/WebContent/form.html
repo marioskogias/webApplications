@@ -5,15 +5,15 @@
 		<legend>Please make your order</legend>
 	</fieldset>
 	<div class='hero-unit'>
-		<form method='post' action='IndexServlet'>
+		<form method='post' action='FormServlet'>
 			<table class='table table-striped'> <tbody>
 			<tr><th>Name</th><th>Price</th><th>Amount</th></tr>
-			<tr><td>Pork Souvlaki</td><td>1.5</td><td><input type = "number"></td></tr>
-			<tr><td>Chicken Souvlaki</td><td>1.7</td><td><input type = "number"></td></tr>
-			<tr><td>Pork gyro</td><td>2</td><td><input type = "number"></td></tr>
-			<tr><td>Chicken gyro</td><td>2.20</td><td><input type = "number"></td></tr>
-			<tr><td>Chips</td><td>1</td><td><input type = "number"></td></tr>
-			<tr><td>Soda</td><td>1.5</td><td><input type = "number"></td></tr> 
+			<tr><td>Pork Souvlaki</td><td>1.5</td><td><input type = "number" value = 0 name = "ps" min = 0></td></tr>
+			<tr><td>Chicken Souvlaki</td><td>1.7</td><td><input type = "number" value = 0 name = "cs" min = 0></td></tr>
+			<tr><td>Pork gyro</td><td>2</td><td><input type = "number" value = 0 name = "pg" min = 0></td></tr>
+			<tr><td>Chicken gyro</td><td>2.20</td><td><input type = "number" value = 0 name = "cg" min = 0></td></tr>
+			<tr><td>Chips</td><td>1</td><td><input type = "number" value = 0 name = "ch" min = 0></td></tr>
+			<tr><td>Soda</td><td>1.5</td><td><input type = "number" value = 0 name = "so" min = 0></td></tr> 
 			</tbody></table>
 			<button type='submit' class='btn'>Send</button>
 		</form>
