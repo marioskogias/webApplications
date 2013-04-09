@@ -63,6 +63,8 @@ public class IndexServlet extends HttpServlet {
 			HashMap<String,String> cookieMap = new HashMap<String,String>(3);
 			for (i=0;i<cookies.length;i++) 
 				cookieMap.put(cookies[i].getName(),cookies[i].getValue());
+				
+				
 			
 			output.println("Old user");
 			output.println("<fieldset><legend>Hello mr "+ cookieMap.get("name") +  "</legend></fieldset>");
@@ -92,15 +94,15 @@ public class IndexServlet extends HttpServlet {
 			HttpServletResponse response) throws ServletException, IOException {
 		String val = request.getParameter("name"); 
 		Cookie c = new Cookie("name",val); // to be stored there as a cookie
-		c.setMaxAge(120); // seconds until cookie removed
+		c.setMaxAge(30); // seconds until cookie removed
 		response.addCookie(c); // must preceede getWriter
 		val = request.getParameter("surname"); 
-		c = new Cookie("surnname",val); // to be stored there as a cookie
-		c.setMaxAge(120); // seconds until cookie removed
+		c = new Cookie("surname",val); // to be stored there as a cookie
+		c.setMaxAge(30); // seconds until cookie removed
 		response.addCookie(c); // must preceede getWriter
 		val = request.getParameter("company"); 
 		c = new Cookie("company",val); // to be stored there as a cookie
-		c.setMaxAge(120); // seconds until cookie removed
+		c.setMaxAge(30); // seconds until cookie removed
 		response.addCookie(c); // must preceede getWriter
 		
 		//PrintWriter output;
