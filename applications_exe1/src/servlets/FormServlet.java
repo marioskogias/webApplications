@@ -88,6 +88,10 @@ public class FormServlet extends HttpServlet {
 		 
 		output.println("</tbody></table>");
 		output.println("<h3>Yout overall order costs "+ over_all_cost + " euros</h3>");
+		output.println("<div id = 'buttons'>");
+		output.println("<a id = 'accept' class='btn btn-large btn-primary' type='button' href = 'AcceptServlet?cost="+over_all_cost+"'>Accept</a>");
+		output.println("<a class='btn btn-large btn-danger' type='button' href = 'form.html'>New order</a>");
+		output.println("</div>");
 		
 		output.println("</body></html>");
 		

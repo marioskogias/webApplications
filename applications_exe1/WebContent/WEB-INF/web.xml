@@ -49,4 +49,14 @@
     <servlet-name>FormServlet</servlet-name>
     <url-pattern>/FormServlet</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>AcceptServlet</display-name>
+    <servlet-name>AcceptServlet</servlet-name>
+    <servlet-class>servlets.AcceptServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AcceptServlet</servlet-name>
+    <url-pattern>/AcceptServlet</url-pattern>
+  </servlet-mapping>
 </web-app>
