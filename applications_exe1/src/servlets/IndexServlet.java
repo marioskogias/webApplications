@@ -50,8 +50,8 @@ public class IndexServlet extends HttpServlet {
 			output.println("<div class='controls'> <input type='text' name='name' placeholder='Name'></div></div>");
 			output.println("<div class='control-group'> <label class='control-label' for='Surname'>Surname</label>");
 			output.println("<div class='controls'> <input type='text' name='surname' placeholder='Surname'></div></div>");
-			output.println("<div class='control-group'> <label class='control-label' for='Company'>Company</label>");
-			output.println("<div class='controls'> <input type='text' name='company' placeholder='Company'></div></div>");
+			output.println("<div class='control-group'> <label class='control-label' for='Address'>Address</label>");
+			output.println("<div class='controls'> <input type='text' name='Address' placeholder='Address'></div></div>");
 			output.println("<button type='submit' class='btn'>Register</button>");
 			output.println("</form>");
 			output.println("</div>");
@@ -72,7 +72,7 @@ public class IndexServlet extends HttpServlet {
 			output.println("<table class='table table-striped'> <tbody>");
 			output.println("<tr><td><strong>Name</strong></td><td>"+cookieMap.get("name")+"</td></tr>");
 			output.println("<tr><td><strong>Surname</strong></td><td>"+cookieMap.get("surname")+"</td></tr>");
-			output.println("<tr><td><strong>Company</strong></td><td>"+cookieMap.get("company")+"</td></tr>");
+			output.println("<tr><td><strong>Address</strong></td><td>"+cookieMap.get("Address")+"</td></tr>");
 			
 			 
 			output.println("</tbody></table>");
@@ -100,8 +100,8 @@ public class IndexServlet extends HttpServlet {
 		c = new Cookie("surname",val); // to be stored there as a cookie
 		c.setMaxAge(30); // seconds until cookie removed
 		response.addCookie(c); // must preceede getWriter
-		val = request.getParameter("company"); 
-		c = new Cookie("company",val); // to be stored there as a cookie
+		val = request.getParameter("Address"); 
+		c = new Cookie("Address",val); // to be stored there as a cookie
 		c.setMaxAge(30); // seconds until cookie removed
 		response.addCookie(c); // must preceede getWriter
 		
