@@ -23,26 +23,23 @@ letter-spacing: 1.0em">Used Vehicles</h1>
 					<!--This template has had so far only presentation elements, -->
 					<!-- without any reference to the target xml document -->
 					<!-- We now refer to the the target xml document -->
-					<xsl:for-each  select="vehicles/vehicle">
+					<xsl:for-each select="vehicles/vehicle">
 						<tr>
-							<td>
-								<xsl:value-of select="@year" />
-							</td>
-							<td>
-								<xsl:value-of select="@make" />
-							</td>
-							<td>
-								<xsl:value-of select="@model" />
-							</td>
-							<td>
-								<xsl:value-of select="mileage" />
-							</td>
-							<td>
-								<xsl:value-of select="color" />
-							</td>
-							<td>
-								<xsl:value-of select="price" />
-							</td>
+							<xsl:for-each select="attribute::*">
+
+								<td>
+									<xsl:value-of select="current()" />
+								</td>
+
+							</xsl:for-each>
+							<xsl:for-each select="child::*">
+
+								<td>
+									<xsl:value-of select="current()" />
+								</td>
+
+							</xsl:for-each>
+
 						</tr>
 					</xsl:for-each>
 				</table>
