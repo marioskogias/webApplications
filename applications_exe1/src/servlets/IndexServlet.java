@@ -1,3 +1,6 @@
+/*
+ * IndexServlet
+ */
 package servlets;
 
 import java.io.IOException;
@@ -94,15 +97,15 @@ public class IndexServlet extends HttpServlet {
 			HttpServletResponse response) throws ServletException, IOException {
 		String val = request.getParameter("name"); 
 		Cookie c = new Cookie("name",val); // to be stored there as a cookie
-		c.setMaxAge(30); // seconds until cookie removed
+		c.setMaxAge(120); // seconds until cookie removed
 		response.addCookie(c); // must preceede getWriter
 		val = request.getParameter("surname"); 
 		c = new Cookie("surname",val); // to be stored there as a cookie
-		c.setMaxAge(30); // seconds until cookie removed
+		c.setMaxAge(120); // seconds until cookie removed
 		response.addCookie(c); // must preceede getWriter
 		val = request.getParameter("Address"); 
 		c = new Cookie("Address",val); // to be stored there as a cookie
-		c.setMaxAge(30); // seconds until cookie removed
+		c.setMaxAge(120); // seconds until cookie removed
 		response.addCookie(c); // must preceede getWriter
 		
 		//PrintWriter output;
