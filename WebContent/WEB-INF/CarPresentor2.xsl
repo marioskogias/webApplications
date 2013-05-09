@@ -13,12 +13,10 @@ color: #FFFFFF; font-size: 20pt; text-align: center;
 letter-spacing: 1.0em">Used Vehicles</h1>
 				<table align="center" border="2">
 					<tr>
-						<th>Year</th>
-						<th>Make</th>
-						<th>Model</th>
-						<th>Mileage</th>
-						<th>Color</th>
-						<th>Price</th>
+					<xsl:template match="/">
+					 	<xsl:apply-templates select="child::*/child::*[1]/attribute::*"/>
+						 <xsl:apply-templates select="child::*/child::*[1]/*"/>
+					</xsl:template>
 					</tr>
 					<!--This template has had so far only presentation elements, -->
 					<!-- without any reference to the target xml document -->
@@ -46,4 +44,17 @@ letter-spacing: 1.0em">Used Vehicles</h1>
 			</body>
 		</html>
 	</xsl:template>
+	
+	<xsl:template match="child::*/child::*[1]/attribute::*">
+		<th> 
+		<xsl:value-of select="local-name()"/>
+		</th>
+	</xsl:template>
+	
+	<xsl:template match="child::*/child::*[1]/*">
+		<th> 
+		<xsl:value-of select="local-name()"/>
+		</th>
+	</xsl:template>
+	
 </xsl:stylesheet>
