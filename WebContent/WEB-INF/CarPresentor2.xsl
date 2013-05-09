@@ -23,7 +23,7 @@ letter-spacing: 1.0em">Used Vehicles</h1>
 					<!--This template has had so far only presentation elements, -->
 					<!-- without any reference to the target xml document -->
 					<!-- We now refer to the the target xml document -->
-					<xsl:for-each select="vehicles/vehicle">
+					<xsl:for-each select="child::*/child::*">
 						<tr>
 							<xsl:for-each select="attribute::*">
 
