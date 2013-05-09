@@ -1,14 +1,64 @@
+package servlets;
+
+
+import java.io.IOException;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.DocumentBuilder;
 import org.w3c.dom.Document;
+import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.NodeList;
 import org.w3c.dom.Node;
 import org.w3c.dom.Element;
 import java.io.File;
 import org.w3c.dom.*;
+import java.io.PrintWriter;
+/**
+ * Servlet implementation class JavaParseXML
+ */
+public class JavaParseXML extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+       
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public JavaParseXML() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
 
-public class ReadXMLFile {
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		PrintWriter output;
+		response.setContentType ("text/html") ;
+		output = response.getWriter() ;
+		StringBuffer buf = new StringBuffer() ;
+		buf.append( "<HTML><HEAD><TITLE>\n") ; // write here line-by-line the html for the desired page
+		buf.append( "Java parses XML\n") ; 
+		buf.append( "</TITLE></HEAD><BODY>\n") ;
+		buf.append("<h1> the results are </h1>");
+		output.println(buf.toString());
+	//	output.println(parseXML().toString());
+		output.print("</body></html>");
+		
+		
+	}
 
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+	}
+	
+	
 	public static StringBuffer parseXML() {
 
 		try {
