@@ -9,4 +9,14 @@
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
+  <servlet>
+    <description></description>
+    <display-name>XMLTransformerAskhsh</display-name>
+    <servlet-name>XMLTransformerAskhsh</servlet-name>
+    <servlet-class>servlets.XMLTransformerAskhsh</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>XMLTransformerAskhsh</servlet-name>
+    <url-pattern>/XMLTransformerAskhsh</url-pattern>
+  </servlet-mapping>
 </web-app>
