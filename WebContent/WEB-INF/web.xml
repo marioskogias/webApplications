@@ -19,4 +19,14 @@
     <servlet-name>XMLTransformerAskhsh</servlet-name>
     <url-pattern>/XMLTransformerAskhsh</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>JavaParseXML</display-name>
+    <servlet-name>JavaParseXML</servlet-name>
+    <servlet-class>servlets.JavaParseXML</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>JavaParseXML</servlet-name>
+    <url-pattern>/JavaParseXML</url-pattern>
+  </servlet-mapping>
 </web-app>
