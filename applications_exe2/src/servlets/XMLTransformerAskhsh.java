@@ -62,7 +62,7 @@ public class XMLTransformerAskhsh extends HttpServlet {
 //			myTransformer = tF.newTransformer(xsltDoc); 
 			myTransformer = tF.newTransformer(ds);
 
-			StreamSource xmlSource = new StreamSource(ctx.getResourceAsStream("/WEB-INF/Cars.xml"));
+			StreamSource xmlSource = new StreamSource(ctx.getResourceAsStream("/WEB-INF/"+request.getParameter("vehicle")));
 			System.out.println("Sending back the xml tranformed into html");
 			response.setContentType("text/html"); //in order to put in http body
 			myTransformer.transform(xmlSource, new StreamResult(pwr));
@@ -85,10 +85,15 @@ public class XMLTransformerAskhsh extends HttpServlet {
 		output.println( "test" );
 		output.println( "</TITLE></HEAD><BODY>" );
 		output.println( "<FORM ACTION='XMLTransformerAskhsh' METHOD='POST'>");
-		output.println( "<STRONG>Please select:<br> </STRONG><PRE>");
+		output.println( "<STRONG>Please select you header colour:<br> </STRONG><PRE>");
 		output.println( "<INPUT TYPE='radio' NAME='color' VALUE='red'>RED<BR>");
 		output.println( "<INPUT TYPE='radio' NAME='color' VALUE='green'>GREEN<BR>");
-		output.println( "<INPUT TYPE='radio' NAME='color' VALUE='blue' CHECKED>BLUE<BR>");
+		output.println( "<INPUT TYPE='radio' NAME='color' VALUE='blue' CHECKED>BLUE<BR></PRE>");
+		output.println( "<STRONG>Please select the kind of vehicle you are interested in:<br> </STRONG><PRE>");
+		output.println( "<INPUT TYPE='radio' NAME='vehicle' VALUE='Cars.xml'>Cars<BR>");
+		output.println( "<INPUT TYPE='radio' NAME='vehicle' VALUE='ships.xml'>Ships<BR>");
+		output.println( "<INPUT TYPE='radio' NAME='vehicle' VALUE='trucks.xml' CHECKED>Trucks<BR>");
+		
      		output.println( "</PRE><INPUT TYPE='submit' VALUE='OK'>");
 		output.println( "</FORM>");
 		output.println( "</BODY></HTML>" );

@@ -1,7 +1,7 @@
 <?xml version="1.0"?> 
 <?xml-stylesheet href="CarPresentor2.xsl" type="text/xsl"?> 
 	<vehicles>
-		<vehicle year="1996" make="Land Rover" model="Discovery">
+		<vehicle year="1996" make="trucks" model="Discovery">
 		<mileage>36500</mileage>
 		<color>black</color>
 		<price>$22100</price>

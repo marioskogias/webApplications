@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.DocumentBuilder;
+import javax.xml.transform.sax.SAXSource;
+
 import org.w3c.dom.Document;
 import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.NodeList;
@@ -17,6 +19,8 @@ import org.w3c.dom.Node;
 import org.w3c.dom.Element;
 import java.io.File;
 import org.w3c.dom.*;
+import org.xml.sax.InputSource;
+
 import java.io.PrintWriter;
 /**
  * Servlet implementation class JavaParseXML
@@ -64,12 +68,13 @@ public class JavaParseXML extends HttpServlet {
 		try {
 
 			StringBuffer buf = new StringBuffer();
-
+			
+			
 			DocumentBuilderFactory dbFactory = DocumentBuilderFactory
 					.newInstance();
 			DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
 			Document doc = dBuilder
-					.parse("/Users/Marios/Documents/ntua/8o/webApplications/WebContent/WEB-INF/Cars.xml");
+					.parse("/Users/Marios/Documents/ntua/8o/applications_internet/applications_exe2/WebContent/WEB-INF/Cars.xml");
 
 			// optional, but recommended
 			// read this -
