@@ -29,4 +29,14 @@
     <servlet-name>JavaParseXML</servlet-name>
     <url-pattern>/JavaParseXML</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>XSLParseXML</display-name>
+    <servlet-name>XSLParseXML</servlet-name>
+    <servlet-class>servlets.XSLParseXML</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>XSLParseXML</servlet-name>
+    <url-pattern>/XSLParseXML</url-pattern>
+  </servlet-mapping>
 </web-app>
