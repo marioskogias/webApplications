@@ -1,3 +1,6 @@
+/*
+ * JavaParseXML
+ */
 package servlets;
 
 import java.io.IOException;
@@ -105,7 +108,7 @@ public class JavaParseXML extends HttpServlet {
 			buf.append("<table align='center' border='2'><tr>");
 
 			for (int j = 0; j < map.getLength(); j++) { // attributes as titles
-				buf.append("<th>" + map.item(j).getNodeName() + "</th>");
+				buf.append("<th>" + map.item(j).getNodeName() + "(a)</th>");
 				System.out.println(map.item(j).getNodeName());
 			}
 
@@ -114,7 +117,7 @@ public class JavaParseXML extends HttpServlet {
 			for (int j = 0; j < firstList.getLength(); j++) { // tags as titles
 				if (firstList.item(j).getNodeType() == Node.ELEMENT_NODE) {
 					buf.append("<th>" + firstList.item(j).getNodeName()
-							+ "</th>");
+							+ " (c) </th>");
 					System.out.println(firstList.item(j).getNodeName());
 				}
 			}

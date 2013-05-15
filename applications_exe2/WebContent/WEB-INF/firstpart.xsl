@@ -6,11 +6,8 @@
 			<head>
 				<title>Used Vehicles</title>
 			</head>
-			<body background="Money.jpg">
-				<h1
-					style="background-color: #446600;
-color: #FFFFFF; font-size: 20pt; text-align: center;
-letter-spacing: 1.0em">Used Vehicles</h1>
+			<body >
+				<h1>Create html with xsl</h1>
 				<table align="center" border="2">
 					<tr>
 					<xsl:template match="/">

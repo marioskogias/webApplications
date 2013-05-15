@@ -1,3 +1,6 @@
+/*
+ * XSLParseXML
+ */
 package servlets;
 
 import java.io.*;
@@ -27,7 +30,7 @@ public class XSLParseXML extends HttpServlet {
 		System.out.println("Init start");
 		try {
 			ctx = config.getServletContext();   // we will use the 'contex' below
-			absPath = ctx.getRealPath("/WEB-INF/CarPresentor2.xsl");
+			absPath = ctx.getRealPath("/WEB-INF/firstpart.xsl");
 			xsltDoc = new SAXSource(new InputSource(absPath));
 			tF = TransformerFactory.newInstance();
 			DocumentBuilderFactory fact = DocumentBuilderFactory.newInstance();
