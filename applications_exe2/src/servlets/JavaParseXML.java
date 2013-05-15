@@ -1,15 +1,18 @@
 package servlets;
 
-
 import java.io.IOException;
 
+import javax.servlet.ServletConfig;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
+import javax.servlet.UnavailableException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.DocumentBuilder;
+import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.sax.SAXSource;
 
 import org.w3c.dom.Document;
@@ -22,59 +25,66 @@ import org.w3c.dom.*;
 import org.xml.sax.InputSource;
 
 import java.io.PrintWriter;
+
 /**
  * Servlet implementation class JavaParseXML
  */
 public class JavaParseXML extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public JavaParseXML() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public JavaParseXML() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	String path;
+
+	public void init(ServletConfig config) throws UnavailableException {
+		System.out.println("Init start");
+		try {
+			path = config.getServletContext().getRealPath("/WEB-INF/Cars.xml");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		System.out.println("Init end");
+	}
+
+	protected void doGet(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
 		PrintWriter output;
-		response.setContentType ("text/html") ;
-		output = response.getWriter() ;
-		StringBuffer buf = new StringBuffer() ;
-		buf.append( "<HTML><HEAD><TITLE>\n") ; // write here line-by-line the html for the desired page
-		buf.append( "Java parses XML\n") ; 
-		buf.append( "</TITLE></HEAD><BODY>\n") ;
+		response.setContentType("text/html");
+		output = response.getWriter();
+		StringBuffer buf = new StringBuffer();
+		buf.append("<HTML><HEAD><TITLE>\n"); // write here line-by-line the html
+												// for the desired page
+		buf.append("Java parses XML\n");
+		buf.append("</TITLE></HEAD><BODY>\n");
 		buf.append("<h1> the results are </h1>");
 		output.println(buf.toString());
 		output.println(parseXML().toString());
 		output.print("</body></html>");
-		
-		
+
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 	}
-	
-	
-	public static StringBuffer parseXML() {
+
+	public StringBuffer parseXML() {
 
 		try {
 
 			StringBuffer buf = new StringBuffer();
-			
-			
+
 			DocumentBuilderFactory dbFactory = DocumentBuilderFactory
 					.newInstance();
 			DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
-			Document doc = dBuilder
-					.parse("/Users/Marios/Documents/ntua/8o/applications_internet/applications_exe2/WebContent/WEB-INF/Cars.xml");
+			Document doc = dBuilder.parse(path);
 
 			// optional, but recommended
 			// read this -
@@ -103,7 +113,8 @@ public class JavaParseXML extends HttpServlet {
 			System.out.println("the titles are");
 			for (int j = 0; j < firstList.getLength(); j++) { // tags as titles
 				if (firstList.item(j).getNodeType() == Node.ELEMENT_NODE) {
-					buf.append("<th>" + firstList.item(j).getNodeName() + "</th>");
+					buf.append("<th>" + firstList.item(j).getNodeName()
+							+ "</th>");
 					System.out.println(firstList.item(j).getNodeName());
 				}
 			}
@@ -121,7 +132,8 @@ public class JavaParseXML extends HttpServlet {
 					System.out.println("the attribute fields are");
 					for (int j = 0; j < mapList.getLength(); j++) { // attributes
 																	// as fields
-						buf.append("<td>" + mapList.item(j).getTextContent() + "</td>");
+						buf.append("<td>" + mapList.item(j).getTextContent()
+								+ "</td>");
 						System.out.println(mapList.item(j).getTextContent());
 					}
 					System.out.println("the tags fields are");
