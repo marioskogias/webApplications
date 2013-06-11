@@ -55,7 +55,7 @@ public class BVAdderLister {
 		Vector params = new Vector();
 		//in the instructions given to the 'Serializer' - see Depl. Descr.
 		params.addElement(new Parameter("vObj", VehicleBean.class, vObj, null)); 
-		call.setParams(params);
+		this.call.setParams(params);
 		// Invoke the call
 		Response response;
 		response = call.invoke(this.url, "");
@@ -70,43 +70,84 @@ public class BVAdderLister {
 
 	}
 
-	public void addlist(URL url, String model, String manufacturer, String year)
-		throws SOAPException{
-				//------------ L I S T I N G ---------------------------------------------------
-				//We use the same Call Object and change this as appropriate
-				/* Another method is now called*/
-				call.setMethodName("listV"); 
-				/* NO parameters here !!*/
-				/*(we cannot have a call with arguments as before)*/ 
-				call.setParams(null); 
-				// Invoke the call; here we expect something back !!
-				response = call.invoke(url, ""); 
-				/*Extract the value returned in the form of a 'Parameter' Object*/
-				Parameter returnValue = response.getReturnValue();
-				/*Cast the 'Parameter' Object onto a Hashtabel Object*/
-				Hashtable catalog = (Hashtable)returnValue.getValue();
-				Enumeration e = catalog.keys();
-				while (e.hasMoreElements()) {
-					String VModel = (String)e.nextElement();
-					VehicleBean vo = (VehicleBean)catalog.get(VModel);
-					System.out.println(" '" + vo.getVModel() + "' by " + vo.getVManufacturer() +
-							", year " + vo.getVYear());
-				}
+	public void list() {
+
+		/* Another method is now called*/
+		this.call.setMethodName("listV"); 
+
+	/* NO parameters here !!*/
+		/*(we cannot have a call with arguments as before)*/ 
+		this.call.setParams(null); 
+	
+	// Invoke the call; here we expect something back !!
+		response = this.call.invoke(this.url, ""); 
+
+		/*Extract the value returned in the form of a 'Parameter' Object*/
+		Parameter returnValue = response.getReturnValue();
+
+		/*Cast the 'Parameter' Object onto a Hashtabel Object*/
+		Hashtable catalog = (Hashtable)returnValue.getValue();
+		
+		Enumeration e = catalog.keys();
+		while (e.hasMoreElements()) {
+			String VModel = (String)e.nextElement();
+			VehicleBean vo = (VehicleBean)catalog.get(VModel);
+			System.out.println(" '" + vo.getVModel() + "' by " + vo.getVManufacturer() +
+					", year " + vo.getVYear() + "with MCs = " = vo.VMotor.getMCs() + " , MNo_cylinders = " 
+					+ vo.VMotor.getMNo_cylinders() + "and MPs = "+ vo.VMotor.getMPs());
+		}
+
+
+	}	
+
+	public void deleteCar(String model) {
+		
+		this.call.setMethodName("delVehicleBean");
+		
+		Vector params = new Vector();
+		params.addElement(new Parameter("model", String.class, model, null)); 
+
+		response = this.call.invoke(this.url, ""); 
+
+		//We do not expect something back, unless there is a fault!!
+		if (!response.generatedFault())
+			System.out.println("Server reported NO FAULT while adding vehicle");
+		else { 
+			Fault fault = response.getFault();
+			System.out.println("Server reported FAULT while adding:");
+			System.out.println(fault.getFaultString());
 		} 
+
+	}
+
+	public void getModel(String model) {
+
+
+		this.call.setMethodName("getVehicleBean"); 
+		
+		Vector params = new Vector();
+		params.addElement(new Parameter("model", String.class, model, null)); 
+		this.call.setParams(params); 
+	
+		// Invoke the call; here we expect something back !!
+		response = this.call.invoke(this.url, ""); 
+
+		/*Extract the value returned in the form of a 'Parameter' Object*/
+		Parameter returnValue = response.getReturnValue();
+
+		/*Cast the 'Parameter' Object onto a Hashtabel Object*/
+		VehicleBean vo = (ehicleBean)returnValue.getValue();
+		
+		System.out.println(" '" + vo.getVModel() + "' by " + vo.getVManufacturer() +
+					", year " + vo.getVYear() + "with MCs = " = vo.VMotor.getMCs() + " , MNo_cylinders = " + 
+					vo.VMotor.getMNo_cylinders() + "and MPs = "+ vo.VMotor.getMPs());
+
+
+	}
 	public static void main(String[] args) {
-		if (args.length != 4)
-		{System.out.println("Put url, model, manufacturer & year as arguments !!"); 
-			return;}
-			try {
-				// URL for SOAP server to connect to
-				URL urlink = new URL(args[0]);
-				// Get values for the new vehicle
-				String model = args[1]; 
-				String manufacturer = args[2];
-				String year = args[3];
-				//Add the new vehicle,
-				BVAdderLister adderlister = new BVAdderLister();
-				adderlister.addlist(urlink, model, manufacturer, year);
-			} catch (Exception e) {e.printStackTrace();}
+			
+		/*create the object - get the link from the terminal*/
+		BVAdderLister adderlister = new BVAdderLister(args[0]);
+
 	}
 }
