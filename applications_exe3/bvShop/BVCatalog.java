@@ -8,6 +8,7 @@ public class BVCatalog {
 	private Hashtable<String,VehicleBean> catalog;
 
 	public BVCatalog() {
+		System.out.println("called the constructor");
 		/** the old catalog remains */
 		/** but now the catalog (Hashtable) will contain also beans !!! */
 		catalog = new Hashtable<String,VehicleBean>();
@@ -49,5 +50,15 @@ public class BVCatalog {
 	/** ... , and that with ('complex') objects as entries !!!! */
 	public Hashtable<String,VehicleBean> listV() {
 		return catalog;
+	}
+
+	/** FOURTH METHOD TO BE EXPOSED - delVehicleBean */
+	/** input argument is a string */
+	/** nothing is returned */
+
+	public void delVehicleBean(String model) {
+		
+		catalog.remove(model);
+
 	}
 }
