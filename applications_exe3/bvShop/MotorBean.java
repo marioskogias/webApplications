@@ -9,6 +9,12 @@ public class MotorBean {
 	public MotorBean() {
 	}
 	
+	public MotorBean(String mcs,String mno_cylinders, String mps) {
+		MCc = mcs;
+		MNo_cylinders = mno_cylinders;
+		MPs = mps;
+	}
+
 	public String getMCc() {
 		return MCc;
 	}

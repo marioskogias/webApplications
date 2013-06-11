@@ -16,43 +16,62 @@ import bvShop.VehicleBean;
 import bvShop.MotorBean;
 
 public class BVAdderLister {
+
+	public Call call;
+	public URL url;
+
+	public BVAdder(String address) {
+
+		/*add the target url*/
+		url = new URL(address);
+
+		SOAPMappingRegistry reg = new SOAPMappingRegistry();
+		BeanSerializer serializer = new BeanSerializer();
+		reg.mapTypes(Constants.NS_URI_SOAP_ENC,
+				new QName("urn:VBean_xmlns","vObj"),
+				VehicleBean.class, serializer, serializer);
+
+		reg.mapTypes(Constants.NS_URI_SOAP_ENC,
+				new QName("urn:MBean_xmlns","mObj"),
+				MotorBean.class, serializer, serializer);
+		//Build the Call object
+		call = new Call();
+		//How to map, where to send, method to call, encoding "style"
+		call.setSOAPMappingRegistry(reg);
+		call.setTargetObjectURI("urn:BVehicleCatalog");
+		call.setEncodingStyleURI(Constants.NS_URI_SOAP_ENC); 
+
+
+	}
+
+	public void add(String model,String manufacturer,String year, String MCs,String MNo_cylinders, String MPs) {
+		MotorBean motor = new MotorBean(MCs,MNo_cylinders,MPs);
+		VehicleBean vObj = new VehicleBean(model, manufacturer, year,motor);
+
+		this.call.setMethodName("addV");
+
+		System.out.println("Adding vehicle model '" + model + "' by " + manufacturer);
+		// Set up the parameters of the call
+		Vector params = new Vector();
+		//in the instructions given to the 'Serializer' - see Depl. Descr.
+		params.addElement(new Parameter("vObj", VehicleBean.class, vObj, null)); 
+		call.setParams(params);
+		// Invoke the call
+		Response response;
+		response = call.invoke(this.url, "");
+		//We do not expect something back, unless there is a fault!!
+		if (!response.generatedFault())
+			System.out.println("Server reported NO FAULT while adding vehicle");
+		else { 
+			Fault fault = response.getFault();
+			System.out.println("Server reported FAULT while adding:");
+			System.out.println(fault.getFaultString());
+		} 
+
+	}
+
 	public void addlist(URL url, String model, String manufacturer, String year)
 		throws SOAPException{
-			// Build the object with the data given by user
-			VehicleBean vObj = new VehicleBean(model, manufacturer, year,new MotorBean());
-			//VehicleBean must now be mapped ... so SOAP can use it
-			SOAPMappingRegistry reg = new SOAPMappingRegistry();
-			BeanSerializer serializer = new BeanSerializer();
-			reg.mapTypes(Constants.NS_URI_SOAP_ENC,
-					new QName("urn:VBean_xmlns","vObj"),
-					VehicleBean.class, serializer, serializer);
-
-			reg.mapTypes(Constants.NS_URI_SOAP_ENC,
-					new QName("urn:MBean_xmlns","mObj"),
-					MotorBean.class, serializer, serializer);
-			//Build the Call object
-			Call call = new Call();
-			//How to map, where to send, method to call, encoding "style"
-			call.setSOAPMappingRegistry(reg);
-			call.setTargetObjectURI("urn:BVehicleCatalog");
-			call.setMethodName("addV");
-			call.setEncodingStyleURI(Constants.NS_URI_SOAP_ENC); 
-			//------------ A D D I N G ---------------------------------------------------
-			System.out.println("Adding vehicle model '" + model + "' by " + manufacturer);
-			// Set up the parameters of the call
-			Vector params = new Vector();
-			//in the instructions given to the 'Serializer' - see Depl. Descr.
-			params.addElement(new Parameter("vObj", VehicleBean.class, vObj, null)); 
-			call.setParams(params);
-			// Invoke the call
-			Response response;
-			response = call.invoke(url, "");
-			//We do not expect something back, unless there is a fault!!
-			if (!response.generatedFault())
-			{ System.out.println("Server reported NO FAULT while adding vehicle");}
-			else { Fault fault = response.getFault();
-				System.out.println("Server reported FAULT while adding:");
-				System.out.println(fault.getFaultString());} 
 				//------------ L I S T I N G ---------------------------------------------------
 				//We use the same Call Object and change this as appropriate
 				/* Another method is now called*/
