@@ -4,7 +4,7 @@ public class VehicleBean {
 	String VModel;
 	String VManufacturer;
 	String VYear;
-	MotorBean VMotor;
+	public	MotorBean VMotor;
 
 	/** The following non-argument constructor MUST be always present */
 	/** for this class to be a Java Bean */
