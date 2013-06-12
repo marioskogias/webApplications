@@ -1,6 +1,6 @@
 <isd:service xmlns:isd ="http://xml.apache.org/xml-soap/deployment" id = "urn:BVehicleCatalog">
 
-<isd:provider type="java" scope ="Application" methods="addV getMotor getVehicleBean listV delVehicleBean">
+<isd:provider type="java" scope ="Application" methods="addV getVehicleBean listV delVehicleBean">
 	<isd:java class="bvShop.BVCatalog" static="false" /> 
 </isd:provider> 
 

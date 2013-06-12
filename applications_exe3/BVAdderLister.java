@@ -11,6 +11,7 @@ import org.apache.soap.rpc.Call;
 import org.apache.soap.rpc.Parameter;
 import org.apache.soap.rpc.Response;
 import org.apache.soap.util.xml.QName;
+import java.util.Scanner;
 
 import bvShop.VehicleBean;
 import bvShop.MotorBean;
@@ -131,7 +132,7 @@ public class BVAdderLister {
 				System.out.println("Server reported NO FAULT while adding vehicle");
 			else { 
 				Fault fault = response.getFault();
-				System.out.println("Server reported FAULT while adding:");
+				System.out.println("Server reported FAULT while deleting:");
 				System.out.println(fault.getFaultString());
 			} 
 		} catch (Exception e) {
@@ -171,7 +172,49 @@ public class BVAdderLister {
 
 		/*create the object - get the link from the terminal*/
 		BVAdderLister adderlister = new BVAdderLister(args[0]);
-		adderlister.list();
-		//adderlister.getModel("Buick");
+		
+		System.out.println("Hello user and welcome to our web application client");
+		System.out.println("-----------------------------------------------------");
+		System.out.println("Press Ctrl+C to exit");
+		
+		while(true) {
+			
+			System.out.println("Please tell me what to do:");
+			System.out.println("Press 1 to list all the vehicles");
+			System.out.println("Press 2 to delete a vehicle");
+			System.out.println("Press 3 to get a specific model");
+			System.out.println("Press 4 to add a vehicle");
+
+			try {
+				Scanner in = new Scanner(System.in);
+				int val = in.nextInt();
+				
+				switch (val) {
+					
+					case 1:
+						System.out.println();
+						adderlister.list();
+						System.out.println("-----------------------------------------------------");
+						break;
+
+					case 2:
+						System.out.println("Give the model name");
+						String name = in.nextLine();
+						name = in.nextLine();
+						adderlister.deleteCar(name);
+						System.out.println("-----------------------------------------------------");
+				}
+
+			} catch (Exception e) {
+					System.out.println("An error occured");
+					System.exit(1);
+
+			}
+
+
+
+
+
+		}
 	}
 }

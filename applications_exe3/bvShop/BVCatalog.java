@@ -45,13 +45,6 @@ public class BVCatalog {
 		return (VehicleBean) catalog.get(model);
 	}
 
-	public MotorBean getMotor(String model) {
-		if (model == null) {
-			throw new IllegalArgumentException("carModel cannot be null.");
-		}
-		VehicleBean car = catalog.get(model);
-		return car.getVMotor();
-	}
 	/** THIRD METHOD TO BE EXPOSED - listV */
 	/** NO input argument - a whole table is returned */
 	/** ... , and that with ('complex') objects as entries !!!! */
