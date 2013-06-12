@@ -189,7 +189,8 @@ public class BVAdderLister {
 			try {
 				Scanner in = new Scanner(System.in);
 				int val = in.nextInt();
-				
+				String line;
+
 				switch (val) {
 					
 					case 1:
@@ -200,9 +201,17 @@ public class BVAdderLister {
 
 					case 2:
 						System.out.println("Give the model name");
-						String name = in.nextLine();
-						name = in.nextLine();
-						adderlister.deleteCar(name);
+						line = in.nextLine();
+						line = in.nextLine();
+						adderlister.deleteCar(line);
+						System.out.println("-----------------------------------------------------");
+						break;
+
+					case 3:
+						System.out.println("Give the model name");
+						line = in.nextLine();
+						line = in.nextLine();
+						adderlister.getModel(line);
 						System.out.println("-----------------------------------------------------");
 				}
 
