@@ -52,13 +52,13 @@ public class VehicleBean {
 		return VMotor;
 	}
 
-	public void setMotor(MotorBean motor) {
+	public void setVMotor(MotorBean motor) {
 		this.VMotor = motor;
 	}
 
 	// toString is an in-built method for every Java object. Outputs an
 	// informative string
 	public String toString() {
-		return "'" + VModel + "' by " + VManufacturer + " (" + VYear + ")";
+		return "'" + VModel + "' by " + VManufacturer + " (" + VYear + ") and motor " + VMotor;
 	}
 }

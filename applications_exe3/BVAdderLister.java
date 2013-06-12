@@ -32,6 +32,7 @@ public class BVAdderLister {
 
 		SOAPMappingRegistry reg = new SOAPMappingRegistry();
 		BeanSerializer serializer = new BeanSerializer();
+
 		reg.mapTypes(Constants.NS_URI_SOAP_ENC,
 				new QName("urn:VBean_xmlns","vObj"),
 				VehicleBean.class, serializer, serializer);
@@ -39,6 +40,7 @@ public class BVAdderLister {
 		reg.mapTypes(Constants.NS_URI_SOAP_ENC,
 				new QName("urn:MBean_xmlns","mObj"),
 				MotorBean.class, serializer, serializer);
+		
 		//Build the Call object
 		call = new Call();
 		//How to map, where to send, method to call, encoding "style"
@@ -95,18 +97,18 @@ public class BVAdderLister {
 
 			/*Extract the value returned in the form of a 'Parameter' Object*/
 			Parameter returnValue = response.getReturnValue();
+			
 
 			/*Cast the 'Parameter' Object onto a Hashtabel Object*/
-			Hashtable catalog = (Hashtable)returnValue.getValue();
-
+			Hashtable<String,VehicleBean> catalog = (Hashtable<String,VehicleBean>)returnValue.getValue();
 			Enumeration e = catalog.keys();
 			while (e.hasMoreElements()) {
 				String VModel = (String)e.nextElement();
 				VehicleBean vo = (VehicleBean)catalog.get(VModel);
 				System.out.println(" '" + vo.getVModel() + "' by " + vo.getVManufacturer() +
-						", year " + vo.getVYear() + "with MCs = " + vo.VMotor.getMCc() + " , MNo_cylinders = " 
-						+ vo.VMotor.getMNo_cylinders() + "and MPs = "+ vo.VMotor.getMPs());
-			}
+						", year " + vo.getVYear() + " with MCs = " + vo.VMotor.getMCc() + " , MNo_cylinders = " 
+						+ vo.VMotor.getMNo_cylinders() + " and MPs = "+ vo.VMotor.getMPs());
+			} 
 		}
 		catch (Exception e) {
 			e.printStackTrace();
@@ -153,13 +155,13 @@ public class BVAdderLister {
 
 			/*Extract the value returned in the form of a 'Parameter' Object*/
 			Parameter returnValue = response.getReturnValue();
-
+			
 			/*Cast the 'Parameter' Object onto a Hashtabel Object*/
 			VehicleBean vo = (VehicleBean)returnValue.getValue();
 
 			System.out.println(" '" + vo.getVModel() + "' by " + vo.getVManufacturer() +
-					", year " + vo.getVYear() + "with MCs = " + vo.VMotor.getMCc() + " , MNo_cylinders = " + 
-					vo.VMotor.getMNo_cylinders() + "and MPs = "+ vo.VMotor.getMPs());
+					", year " + vo.getVYear() + " with MCs = " + vo.VMotor.getMCc() + " , MNo_cylinders = " + 
+					vo.VMotor.getMNo_cylinders() + " and MPs = "+ vo.VMotor.getMPs());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -169,6 +171,7 @@ public class BVAdderLister {
 
 		/*create the object - get the link from the terminal*/
 		BVAdderLister adderlister = new BVAdderLister(args[0]);
-
+		adderlister.list();
+		//adderlister.getModel("Buick");
 	}
 }

@@ -13,11 +13,11 @@ public class BVCatalog {
 		/** but now the catalog (Hashtable) will contain also beans !!! */
 		catalog = new Hashtable<String,VehicleBean>();
 		/** Some content - we NOW polulate with some objects!! */
-		addV(new VehicleBean("Buick", "General Motors", "1948",new MotorBean()));
-		addV(new VehicleBean("Mustang", "Ford", "1960",new MotorBean()));
-		addV(new VehicleBean("4CV", "Citroen", "1950",new MotorBean()));
-		addV(new VehicleBean("Jeep", "General Motors", "1942",new MotorBean()));
-		addV(new VehicleBean("Beatle", "Volkswagen", "1938",new MotorBean()));
+		addV(new VehicleBean("Buick", "General Motors", "1948",new MotorBean("1600","6","80 HP")));
+		addV(new VehicleBean("Mustang", "Ford", "1960",new MotorBean("1800","6","120 HP")));
+		addV(new VehicleBean("4CV", "Citroen", "1950",new MotorBean("1200","6","70 HP")));
+		addV(new VehicleBean("Jeep", "General Motors", "1942",new MotorBean("2000","8","200 HP")));
+		addV(new VehicleBean("Beatle", "Volkswagen", "1938",new MotorBean("1600","6","80 HP")));
 	}
 
 	/** FIRST METHOD TO BE EXPOSED - addV */
@@ -45,6 +45,13 @@ public class BVCatalog {
 		return (VehicleBean) catalog.get(model);
 	}
 
+	public MotorBean getMotor(String model) {
+		if (model == null) {
+			throw new IllegalArgumentException("carModel cannot be null.");
+		}
+		VehicleBean car = catalog.get(model);
+		return car.getVMotor();
+	}
 	/** THIRD METHOD TO BE EXPOSED - listV */
 	/** NO input argument - a whole table is returned */
 	/** ... , and that with ('complex') objects as entries !!!! */

@@ -33,5 +33,10 @@ public class MotorBean {
 	public void setMPs(String mPs) {
 		MPs = mPs;
 	}
+
+
+	public String toString() {
+		return MCc + " " + MNo_cylinders + " " + MPs;
+}
 	
 }
