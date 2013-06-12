@@ -57,7 +57,8 @@ public class BVCatalog {
 	/** nothing is returned */
 
 	public void delVehicleBean(String model) {
-		
+	
+		System.out.println("deleting...");
 		catalog.remove(model);
 
 	}

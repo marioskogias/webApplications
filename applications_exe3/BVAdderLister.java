@@ -122,6 +122,7 @@ public class BVAdderLister {
 
 		Vector params = new Vector();
 		params.addElement(new Parameter("model", String.class, model, null)); 
+		call.setParams(params);
 
 		try {
 			Response response;
@@ -129,7 +130,7 @@ public class BVAdderLister {
 
 			//We do not expect something back, unless there is a fault!!
 			if (!response.generatedFault())
-				System.out.println("Server reported NO FAULT while adding vehicle");
+				System.out.println("Server reported NO FAULT while deleting vehicle");
 			else { 
 				Fault fault = response.getFault();
 				System.out.println("Server reported FAULT while deleting:");
