@@ -49,6 +49,8 @@ public class BVCatalog {
 	/** NO input argument - a whole table is returned */
 	/** ... , and that with ('complex') objects as entries !!!! */
 	public Hashtable<String,VehicleBean> listV() {
+		System.out.println("in listing...");
+		System.out.println(catalog);
 		return catalog;
 	}
 

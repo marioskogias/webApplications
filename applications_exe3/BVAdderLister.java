@@ -213,7 +213,18 @@ public class BVAdderLister {
 						line = in.nextLine();
 						adderlister.getModel(line);
 						System.out.println("-----------------------------------------------------");
-				}
+						break;
+
+					case 4:
+						System.out.println("Give model name, manufacturer, year, MCc, MNo_cylinders, MPs in one line separated by space");
+						line = in.nextLine();
+						line = in.nextLine();
+						String splits[] = line.split(" ");
+						adderlister.add(splits[0],splits[1],splits[2],splits[3],splits[4],splits[5]);
+						System.out.println("-----------------------------------------------------");
+						break;
+			
+			}
 
 			} catch (Exception e) {
 					System.out.println("An error occured");
