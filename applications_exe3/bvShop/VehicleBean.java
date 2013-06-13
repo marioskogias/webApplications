@@ -1,3 +1,8 @@
+/*
+ *
+ * VehicleBean.java
+ *
+ */
 package bvShop;
 
 public class VehicleBean {

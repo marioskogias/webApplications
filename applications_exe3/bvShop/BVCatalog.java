@@ -1,3 +1,9 @@
+/*
+ *
+ * BVCatalog.java
+ *
+ */
+
 package bvShop;
 
 import java.util.Hashtable;

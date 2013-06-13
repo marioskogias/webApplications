@@ -1,3 +1,9 @@
+/*
+ *
+ * MotorBean.java
+ *
+ */
+
 package bvShop;
 
 public class MotorBean {
