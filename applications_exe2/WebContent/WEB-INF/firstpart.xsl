@@ -11,26 +11,26 @@
 				<table align="center" border="2">
 					<tr>
 					<xsl:template match="/">
-					 	<xsl:apply-templates select="child::*/child::*[1]/attribute::*"/>
-						 <xsl:apply-templates select="child::*/child::*[1]/*"/>
+					 	<xsl:apply-templates select="*/*[1]/@*"/>
+						 <xsl:apply-templates select="*/*[1]/*"/>
 					</xsl:template>
 					</tr>
 					<!--This template has had so far only presentation elements, -->
 					<!-- without any reference to the target xml document -->
 					<!-- We now refer to the the target xml document -->
-					<xsl:for-each select="child::*/child::*">
+					<xsl:for-each select="*/*">
 						<tr>
-							<xsl:for-each select="attribute::*">
+							<xsl:for-each select="@*">
 
 								<td>
-									<xsl:value-of select="current()" />
+									<xsl:value-of select="." />
 								</td>
 
 							</xsl:for-each>
-							<xsl:for-each select="child::*">
+							<xsl:for-each select="*">
 
 								<td>
-									<xsl:value-of select="current()" />
+									<xsl:value-of select="." />
 								</td>
 
 							</xsl:for-each>
@@ -42,16 +42,16 @@
 		</html>
 	</xsl:template>
 	
-	<xsl:template match="child::*/child::*[1]/attribute::*">
+	<xsl:template match="*/*[1]/@*">
 		<th> 
-		<xsl:value-of select="local-name()"/>
+		<xsl:value-of select="name()"/>
 		(a)
 		</th>
 	</xsl:template>
 	
-	<xsl:template match="child::*/child::*[1]/*">
+	<xsl:template match="*/*[1]/*">
 		<th> 
-		<xsl:value-of select="local-name()"/>
+		<xsl:value-of select="name()"/>
 		(c)
 		</th>
 	</xsl:template>

@@ -4,7 +4,6 @@
 package servlets;
 
 import java.io.*;
-import javax.xml.transform.stream.*;
 import javax.xml.transform.*;
 import javax.xml.transform.sax.SAXSource;
 import javax.xml.transform.stream.StreamSource;
@@ -20,6 +19,10 @@ import javax.xml.parsers.*;
 import javax.xml.transform.dom.*;// for transformations
 
 public class XSLParseXML extends HttpServlet {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	ServletContext ctx;
 	String absPath;          //absolute path to our files - see below
 	SAXSource xsltDoc; TransformerFactory tF;
@@ -55,6 +58,7 @@ public class XSLParseXML extends HttpServlet {
 			DOMSource ds = new DOMSource(doc) ; 
 	       		System.out.println( ((Document)ds.getNode()).getDocumentElement().getNodeName() +" " +((Document)ds.getNode()).getDocumentElement().getNodeValue() ) ;
 			myTransformer = tF.newTransformer(ds);
+			System.out.println("flag");
 			StreamSource xmlSource = new StreamSource(ctx.getResourceAsStream("/WEB-INF/"+request.getParameter("vehicle")));
 			System.out.println("Sending back the xml tranformed into html");
 			response.setContentType("text/html"); //in order to put in http body
